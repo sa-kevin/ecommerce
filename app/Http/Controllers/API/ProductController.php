@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return Product::all();
     }
 
     /**
@@ -20,7 +22,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = Product::create($request->all());
+        return response()->json($product, 201);
     }
 
     /**
@@ -28,7 +31,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Product::find($id);
     }
 
     /**
@@ -36,7 +39,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Product::findFail($id);
+        $product->update($request->all());
+        return response()->json($product, 200);
     }
 
     /**
@@ -44,6 +49,7 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Product::destroy($id);
+        return response()->json(null, 204);
     }
 }
