@@ -16,4 +16,4 @@ Route::apiResource('products', ProductController::class);
 Route::apiResource('categories', CategoryController::class);
 Route::apiResource('orders', OrderController::class);
 Route::apiResource('order-items', OrderItemController::class);
-Route::apiResource('payments', PaymentController,::class);
+Route::apiResource('payments', PaymentController::class);
