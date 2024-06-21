@@ -7,6 +7,7 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\OrderItemController;
 use App\Http\Controllers\API\PaymentController;
+use App\Http\Controllers\API\UserController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
@@ -14,6 +15,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::apiResource('users', UserController::class);
     Route::apiResource('products', ProductController::class);
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('orders', OrderController::class);
